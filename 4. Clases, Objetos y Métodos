@@ -1,0 +1,76 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+// Definición de la clase Persona
+class Persona {
+protected:
+    string nombre;
+    int edad;
+public:
+    // Constructor de Persona
+    Persona(string nombre, int edad) : nombre(nombre), edad(edad) {}
+
+    // Métodos para obtener los valores de los atributos
+    string getNombre() {
+        return nombre;
+    }
+
+    int getEdad() {
+        return edad;
+    }
+};
+
+// Definición de la clase Estudiante que hereda de Persona
+class Estudiante : public Persona {
+private:
+    int numeroEstudiante;
+    float promedioCalificaciones;
+public:
+    // Constructor de Estudiante que inicializa los atributos de Persona y de Estudiante
+    Estudiante(string nombre, int edad, int numeroEstudiante, float promedioCalificaciones) 
+        : Persona(nombre, edad), numeroEstudiante(numeroEstudiante), promedioCalificaciones(promedioCalificaciones) {}
+
+    // Métodos para establecer los valores de los atributos específicos de Estudiante
+    void setNumeroEstudiante(int numero) {
+        numeroEstudiante = numero;
+    }
+
+    void setPromedioCalificaciones(float promedio) {
+        promedioCalificaciones = promedio;
+    }
+
+    // Métodos para obtener los valores de los atributos específicos de Estudiante
+    int getNumeroEstudiante() {
+        return numeroEstudiante;
+    }
+
+    float getPromedioCalificaciones() {
+        return promedioCalificaciones;
+    }
+};
+
+int main() {
+    // Crear un objeto de la clase Estudiante
+    Estudiante estudiante1("Juan", 20, 12345, 85.5);
+
+    // Utilizar métodos heredados de la clase Persona
+    cout << "Nombre del estudiante: " << estudiante1.getNombre() << endl;
+    cout << "Edad del estudiante: " << estudiante1.getEdad() << endl;
+
+    // Utilizar métodos específicos de la clase Estudiante
+    cout << "Numero de estudiante: " << estudiante1.getNumeroEstudiante() << endl;
+    cout << "Promedio de calificaciones: " << estudiante1.getPromedioCalificaciones() << endl;
+
+    // Modificar los atributos específicos de Estudiante
+    estudiante1.setNumeroEstudiante(54321);
+    estudiante1.setPromedioCalificaciones(90.0);
+
+    // Mostrar los atributos actualizados
+    cout << "\nDespues de modificar los atributos:" << endl;
+    cout << "Numero de estudiante: " << estudiante1.getNumeroEstudiante() << endl;
+    cout << "Promedio de calificaciones: " << estudiante1.getPromedioCalificaciones() << endl;
+
+    return 0;
+}
