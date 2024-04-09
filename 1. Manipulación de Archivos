@@ -1,0 +1,60 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+
+using namespace std;
+
+// Función para almacenar datos en un archivo
+void almacenarDatos() {
+    ofstream archivo("datos.txt", ios::app); // Abre el archivo en modo de escritura, conservando los datos anteriores si existen
+
+    if (!archivo.is_open()) {
+        cout << "Error al abrir el archivo." << endl;
+        return;
+    }
+
+    string nombre;
+    int edad;
+
+    cout << "Ingrese el nombre de la persona (o 'fin' para terminar): ";
+    cin >> nombre;
+
+    while (nombre != "fin") {
+        cout << "Ingrese la edad de la persona: ";
+        cin >> edad;
+
+        archivo << nombre << " " << edad << endl;
+
+        cout << "Ingrese el nombre de la persona (o 'fin' para terminar): ";
+        cin >> nombre;
+    }
+
+    archivo.close();
+}
+
+// Función para leer y mostrar datos desde un archivo
+void mostrarDatos() {
+    ifstream archivo("datos.txt");
+
+    if (!archivo.is_open()) {
+        cout << "Error al abrir el archivo." << endl;
+        return;
+    }
+
+    string nombre;
+    int edad;
+
+    cout << "Datos almacenados en el archivo:" << endl;
+    while (archivo >> nombre >> edad) {
+        cout << "Nombre: " << nombre << ", Edad: " << edad << endl;
+    }
+
+    archivo.close();
+}
+
+int main() {
+    almacenarDatos();
+    mostrarDatos();
+
+    return 0;
+}
