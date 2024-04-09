@@ -1,0 +1,80 @@
+#include <iostream>
+#include <string> // Incluimos la biblioteca string
+
+using namespace std;
+
+// Definición de la clase Persona
+class Persona {
+protected:
+    string nombre;
+    int edad;
+public:
+    // Constructor de Persona
+    Persona(string nombre, int edad) : nombre(nombre), edad(edad) {}
+
+    // Métodos para obtener los valores de los atributos
+    string getNombre() {
+        return nombre;
+    }
+
+    int getEdad() {
+        return edad;
+    }
+};
+
+// Definición de la clase Estudiante que hereda de Persona
+class Estudiante : public Persona {
+private:
+    int numeroEstudiante;
+    float promedioCalificaciones;
+public:
+    // Constructor de Estudiante que inicializa los atributos de Persona y de Estudiante
+    Estudiante(string nombre, int edad, int numeroEstudiante, float promedioCalificaciones) 
+        : Persona(nombre, edad), numeroEstudiante(numeroEstudiante), promedioCalificaciones(promedioCalificaciones) {}
+
+    // Métodos para establecer los valores de los atributos específicos de Estudiante
+    void setNumeroEstudiante(int numero) {
+        numeroEstudiante = numero;
+    }
+
+    void setPromedioCalificaciones(float promedio) {
+        promedioCalificaciones = promedio;
+    }
+
+    // Métodos para obtener los valores de los atributos específicos de Estudiante
+    int getNumeroEstudiante() {
+        return numeroEstudiante;
+    }
+
+    float getPromedioCalificaciones() {
+        return promedioCalificaciones;
+    }
+};
+
+int main() {
+    string nombre; // Utilizamos objetos de tipo string en lugar de arreglos de caracteres
+    int edad, numeroEstudiante;
+    float promedioCalificaciones;
+
+    // Solicitamos al usuario que ingrese los datos del estudiante
+    cout << "Ingrese el nombre del estudiante: ";
+    getline(cin, nombre); // Usamos getline para leer una línea completa con espacios
+    cout << "Ingrese la edad del estudiante: ";
+    cin >> edad;
+    cout << "Ingrese el número de estudiante: ";
+    cin >> numeroEstudiante;
+    cout << "Ingrese el promedio de calificaciones del estudiante: ";
+    cin >> promedioCalificaciones;
+
+    // Creamos un objeto de la clase Estudiante con los datos ingresados
+    Estudiante estudiante(nombre, edad, numeroEstudiante, promedioCalificaciones);
+
+    // Mostramos la información del estudiante
+    cout << "\nInformación del estudiante:" << endl;
+    cout << "Nombre: " << estudiante.getNombre() << endl;
+    cout << "Edad: " << estudiante.getEdad() << endl;
+    cout << "Número de estudiante: " << estudiante.getNumeroEstudiante() << endl;
+    cout << "Promedio de calificaciones: " << estudiante.getPromedioCalificaciones() << endl;
+
+    return 0;
+}
